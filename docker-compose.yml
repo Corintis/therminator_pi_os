@@ -1,0 +1,9 @@
+services:
+    therminator_os:
+        build: .
+        privileged: true
+        stdin_open: true
+        tty: true
+        image: therminator_os:latest
+        volumes:
+            - ./therminator_os:/home/imagegen/therminator_os
