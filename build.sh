@@ -11,6 +11,8 @@ RPI_OPTIONS=${RPI_BUILD_SVC}
 RPI_IMAGE_NAME="therminator_os"
 SAVE_SBOM=1
 
+rm -rf deploy/*
+
 ensure_cleanup() {
   echo "Cleanup containers..."
 

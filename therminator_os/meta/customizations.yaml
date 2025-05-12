@@ -4,5 +4,12 @@ mmdebstrap:
   packages:
     - plymouth
     - plymouth-themes
+    - chromium
+    - cage
+    - nodejs
+    - npm
+    - libusb-1.0-0
+    - xfonts-base
+    - unclutter
   install-recommends: false
   

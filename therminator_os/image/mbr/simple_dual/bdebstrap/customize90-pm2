@@ -1,0 +1,36 @@
+#!/bin/bash
+set -eu
+
+ROOTFS="$1"
+
+if chroot "$ROOTFS" id -u therminator > /dev/null 2>&1; then
+  echo "✅ User 'therminator' exists — setting up PM2..."
+  chroot "$ROOTFS" mkdir -p /home/therminator/.pm2
+  chroot "$ROOTFS" chown -R therminator:therminator /home/therminator/.pm2
+
+  chroot "$ROOTFS" su - therminator -c "pm2 start /home/therminator/ecosystem.config.js"
+  chroot "$ROOTFS" su - therminator -c "pm2 save"
+  # Setup PM2 systemd service from root context
+  chroot "$ROOTFS" pm2 startup systemd -u therminator --hp /home/therminator --silent || true
+  chroot "$ROOTFS" systemctl enable pm2-therminator
+else
+  echo "❌ PM2 setup failed: user 'therminator' still not found"
+  exit 1
+fi
+
+# Set Chromium command
+APP="/usr/bin/chromium-browser https://localhost:3000 --kiosk --noerrdialogs --disable-infobars --no-first-run --ozone-platform=wayland --enable-features=OverlayScrollbar --start-maximized"
+
+# Replace <KIOSK_*> placeholders in the template
+KIOSK_USER="therminator"
+KIOSK_HOME="/home/${KIOSK_USER}"
+
+mkdir -p "$ROOTFS/etc/systemd/system"
+sed \
+  -e "s|<KIOSK_USER>|$KIOSK_USER|g" \
+  -e "s|<KIOSK_RUNDIR>|$KIOSK_HOME|g" \
+  -e "s|<KIOSK_APP>|$APP|g" \
+  "../kiosk.service.tpl" > "$ROOTFS/etc/systemd/system/kiosk.service"
+
+# Enable the systemd unit
+chroot "$ROOTFS" systemctl enable kiosk.service
