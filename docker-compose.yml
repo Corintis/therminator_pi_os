@@ -6,4 +6,4 @@ services:
         tty: true
         image: therminator_os:latest
         volumes:
-            - ./therminator_os:/home/imagegen/therminator_os
+            - ./ext_dir:/home/imagegen/ext_dir

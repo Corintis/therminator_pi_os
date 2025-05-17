@@ -1,0 +1,8 @@
+---
+name: enable-multiarch
+# add to profile to run a 32-bit binary (armhf) on a 64-bit system (arm64)
+mmdebstrap:
+  customize-hooks:
+    - chroot $1 dpkg --add-architecture armhf
+    - chroot $1 apt-get update
+    - chroot $1 apt-get install -y libc6:armhf zlib1g:armhf libusb-1.0-0:armhf libstdc++6:armhf

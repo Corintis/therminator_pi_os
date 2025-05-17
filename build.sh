@@ -5,7 +5,7 @@ set -eu
 BUILD_ID=${RANDOM}
 RPI_BUILD_SVC="therminator_os"
 RPI_BUILD_USER="imagegen"
-RPI_CUSTOMIZATIONS_DIR="therminator_os"
+RPI_CUSTOMIZATIONS_DIR="ext_dir"
 RPI_CONFIG=${RPI_BUILD_SVC}
 RPI_OPTIONS=${RPI_BUILD_SVC}
 RPI_IMAGE_NAME="therminator_os"
