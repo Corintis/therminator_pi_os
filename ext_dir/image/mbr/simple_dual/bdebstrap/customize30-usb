@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eu
+
+
+cat <<EOF > "$1/etc/udev/rules.d/99-usb-mount.rules"
+ACTION=="add", KERNEL=="sd[a-z][0-9]", RUN+="/usr/local/bin/usb-mount.sh %k"
+ACTION=="remove", KERNEL=="sd[a-z][0-9]", RUN+="/usr/local/bin/usb-umount.sh %k"
+EOF
+# Ensure the /media directory exists and is writable
+mkdir -p "$1/media"
+chmod 777 "$1/media"
+
+$BDEBSTRAP_HOOKS/enable-units "$1" systemd-udevd
+$BDEBSTRAP_HOOKS/enable-units "$1" dbus
+$BDEBSTRAP_HOOKS/enable-units "$1" udisks2

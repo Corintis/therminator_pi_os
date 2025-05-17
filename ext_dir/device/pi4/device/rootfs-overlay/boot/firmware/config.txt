@@ -41,6 +41,6 @@ boot_delay=0
 BOOT_UART=1
 uart_2ndstage=1
 hdmi_group=2
-hdmi_mode=82
-hdmi_cvt 1920 1080 60 6 0 0 0
+hdmi_mode=85
+hdmi_cvt 1280 720 60 6 0 0 0
 dtoverlay=dwc2,dr_mode=host

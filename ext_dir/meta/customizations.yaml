@@ -33,8 +33,18 @@ mmdebstrap:
     - curl
     - libinput-bin 
     - usbutils
+    - udisks2
+    - libblockdev-crypto2
+    - libblockdev-mdraid2
+    - policykit-1
     - evtest                # test touchscreen events
     - libudev1
+    - mount
+    - util-linux
+    - exfat-fuse  # Optional, for exFAT support
+    - exfatprogs
+    - dosfstools  # Optional, for FAT32
+    - e2fsprogs   # Optional, for ext4
 
   install-recommends: false
   customize-hooks:

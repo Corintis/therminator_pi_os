@@ -15,4 +15,4 @@ chroot $1 chown -R $IGconf_device_user1:$IGconf_device_user1 /home/$IGconf_devic
 chmod -R u+rwX "$ROOTFS/home/$IGconf_device_user1"
 chmod +x "$ROOTFS/home/$IGconf_device_user1/therminator_server" || true
 
-chroot $1 sh -c "for grp in video input tty dialout; do usermod -aG \$grp $IGconf_device_user1; done"
+chroot $1 sh -c "for grp in video input tty dialout plugdev storage users; do usermod -aG \$grp $IGconf_device_user1; done"
