@@ -10,14 +10,8 @@ echo "$(date): Mounting $DEVICE to $MOUNT_DIR" >> "$LOGFILE"
 sleep 5
 
 # Determine who runs the script and mount accordingly
-if [ -n "$DEVICE" ] && [ "$(whoami)" = "therminator" ]; then
-  udisksctl mount -b "$DEVICE" >> "$LOGFILE" 2>&1
-elif [ -n "$DEVICE" ]; then
-  runuser -l therminator -c "udisksctl mount -b $DEVICE" >> "$LOGFILE" 2>&1
-else
-  echo "$(date): ❌ No device provided." >> "$LOGFILE"
-  exit 1
-fi
+udisksctl mount -b "$DEVICE" >> "$LOGFILE" 2>&1
+
 
 # Wait for udisksctl to finish mounting
 sleep 1
