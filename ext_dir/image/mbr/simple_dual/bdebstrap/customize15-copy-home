@@ -3,16 +3,20 @@ set -eu
 
 ROOTFS="$1"
 
-# Create home directory if it doesn't exist
+# Ensure home directory exists
 mkdir -p "$ROOTFS/home/$IGconf_device_user1"
 
-# Rsync the home files (e.g., app, configs, scripts)
+# Rsync user home contents from image source
 rsync -a "${IGIMAGE}/home/$IGconf_device_user1/" "$ROOTFS/home/$IGconf_device_user1/"
 
-chroot $1 chown -R $IGconf_device_user1:$IGconf_device_user1 /home/$IGconf_device_user1
-
-# Fix permissions: readable by user, executables for scripts/binaries
+# Ensure ownership and permissions
+chroot "$ROOTFS" chown -R "$IGconf_device_user1:$IGconf_device_user1" "/home/$IGconf_device_user1"
 chmod -R u+rwX "$ROOTFS/home/$IGconf_device_user1"
 chmod +x "$ROOTFS/home/$IGconf_device_user1/therminator_server" || true
 
-chroot $1 sh -c "for grp in video input tty dialout plugdev storage users; do usermod -aG \$grp $IGconf_device_user1; done"
+# Add passwordless sudo rule for therminator_server
+echo "$IGconf_device_user1 ALL=(ALL) NOPASSWD: /home/$IGconf_device_user1/therminator_server" > "$ROOTFS/etc/sudoers.d/therminator_server"
+chmod 440 "$ROOTFS/etc/sudoers.d/therminator_server"
+
+# Add user to relevant groups
+chroot "$ROOTFS" sh -c "for grp in video input tty dialout plugdev storage users; do usermod -aG \$grp $IGconf_device_user1; done"

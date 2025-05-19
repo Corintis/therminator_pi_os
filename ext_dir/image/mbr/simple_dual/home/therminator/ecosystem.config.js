@@ -10,7 +10,8 @@ module.exports = {
       },
       {
         name: "therminator-server",
-        script: "./therminator_server",
+        script: "sudo",
+        args: "./therminator_server",
         cwd: "/home/therminator",
         exec_mode: "fork",
         interpreter: "none"
