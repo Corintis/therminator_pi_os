@@ -7,7 +7,7 @@ LOGFILE="/tmp/usb-mount.log"
 echo "$(date): Mounting $DEVICE to $MOUNT_DIR" >> "$LOGFILE"
 
 # Wait for the device node to appear
-sleep 5
+sleep 1
 
 # Determine who runs the script and mount accordingly
 udisksctl mount -b "$DEVICE" >> "$LOGFILE" 2>&1
