@@ -1,4 +1,5 @@
 # Therminator OS - Image builder
+Author: Nicola Esposito
 
 The build process has been tested on both ARM64 Mac and AMD64 Mac laptops.
 
