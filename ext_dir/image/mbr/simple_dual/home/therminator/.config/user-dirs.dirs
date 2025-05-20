@@ -1,0 +1,8 @@
+XDG_DESKTOP_DIR="/home/tmp"
+XDG_DOWNLOAD_DIR="/dev/null"
+XDG_DOCUMENTS_DIR="/dev/null"
+XDG_MUSIC_DIR="/dev/null"
+XDG_PICTURES_DIR="/dev/null"
+XDG_PUBLICSHARE_DIR="/dev/null"
+XDG_TEMPLATES_DIR="/dev/null"
+XDG_VIDEOS_DIR="/dev/null"

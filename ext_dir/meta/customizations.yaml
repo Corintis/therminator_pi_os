@@ -45,6 +45,7 @@ mmdebstrap:
     - exfatprogs
     - dosfstools  # Optional, for FAT32
     - e2fsprogs   # Optional, for ext4
+    - xdg-user-dirs
 
   install-recommends: false
   customize-hooks:

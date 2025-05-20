@@ -20,3 +20,9 @@ chmod 440 "$ROOTFS/etc/sudoers.d/therminator_server"
 
 # Add user to relevant groups
 chroot "$ROOTFS" sh -c "for grp in video input tty dialout plugdev storage users; do usermod -aG \$grp $IGconf_device_user1; done"
+
+# Set ownership
+chroot "$ROOTFS" chown -R "$IGconf_device_user1:$IGconf_device_user1" "/home/$IGconf_device_user1/.config"
+
+# Update user-dirs database (run as the target user)
+chroot "$ROOTFS" runuser -l "$IGconf_device_user1" -c 'xdg-user-dirs-update'
