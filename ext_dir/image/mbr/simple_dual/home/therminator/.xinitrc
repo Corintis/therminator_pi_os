@@ -38,7 +38,9 @@ exec chromium \
   --disable-features=TranslateUI \
   --no-first-run \
   --start-maximized \
-  --no-sandbox \
-  --disable-gpu \
-  --disable-software-rasterizer \
+  --use-gl=egl \
+  --enable-zero-copy \
+  --enable-features=VaapiVideoDecoder \
+  --enable-logging=stderr --v=1 \
+  --disable-dev-shm-usage
   $SCALE >> "$LOGFILE" 2>&1
