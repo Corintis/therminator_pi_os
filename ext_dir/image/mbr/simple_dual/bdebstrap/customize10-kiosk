@@ -9,7 +9,7 @@ echo "✅ PM2 Installed"
 
 ROOTFS=$1
 
-chroot $1 npm install -g serve
+chroot $1 npm install -g serve express lodash multer ws
 echo "✅ Installed serve"
 
 chroot $1 systemctl enable ssh

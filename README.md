@@ -14,6 +14,8 @@ pi4 or pi5 depending on your board
 ./build.sh
 ```
 
+- Remember to build react with 127.0.0.1
+
 Use the Raspberry Pi Imager tool to install the img file located in deploy
 on an SD card or USB stick.
 

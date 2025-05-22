@@ -31,7 +31,13 @@ echo "$(date): ✅ localhost:3000 is up, launching Chromium" >> "$LOGFILE"
 # Launch Chromium with recommended flags
 exec chromium \
   --kiosk http://localhost:3000 \
+  --enable-logging \
+  --v=1 \
+  --enable-logging=stderr \
+  --disable-web-security \
+  --user-data-dir="/tmp/chrome" \
   --noerrdialogs \
+  --disable-translate \
   --disable-infobars \
   --disable-cursor \
   --disable-session-crashed-bubble \

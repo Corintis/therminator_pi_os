@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const os = require("os");
-
+const fs = require("fs");
 const app = express();
 
 // Serve the static files from the React app
@@ -29,7 +29,13 @@ function getLocalIPAddress() {
 process.env.LOCAL_IP = getLocalIPAddress();
 console.log(`Local IP is set to ${process.env.LOCAL_IP}`);
 
+// Write the local IP to a .env file
+const envFilePath = path.join(__dirname, ".env");
+fs.writeFileSync(envFilePath, `REACT_APP_LOCAL_IP=${process.env.LOCAL_IP}\n`, { flag: "w" });
+
+console.log(`.env file created with LOCAL_IP=${process.env.LOCAL_IP}`);
+
 const port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, process.env.LOCAL_IP, () => {
   console.log(`Server is running on ${process.env.LOCAL_IP}:${port}`);
 });

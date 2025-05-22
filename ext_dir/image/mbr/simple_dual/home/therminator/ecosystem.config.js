@@ -8,13 +8,21 @@ module.exports = {
           PORT: 3000
         }
       },
+      // {
+      //   name: "therminator-server",
+      //   script: "sudo",
+      //   args: "./therminator_server",
+      //   cwd: "/home/therminator",
+      //   exec_mode: "fork",
+      //   interpreter: "none"
+      // }
       {
         name: "therminator-server",
-        script: "sudo",
-        args: "./therminator_server",
+        script: "websocket.js",
         cwd: "/home/therminator",
-        exec_mode: "fork",
-        interpreter: "none"
+        env: {
+          PORT: 8080
+        }
       }
     ]
   };
