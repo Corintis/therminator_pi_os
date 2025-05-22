@@ -73,8 +73,8 @@ let currentFrame = null; // Store persistent current frame
 function startSimulation(ws) {
   if (simulationInterval) return;
 
-  const rows = normalizedData.length;
-  const cols = normalizedData[0].length;
+  const rowsPowermap = normalizedData.length;
+  const colsPowermap = normalizedData[0].length;
   const baseMin = 25;
   const baseMax = 60;
   const variation = 1;
@@ -82,8 +82,8 @@ function startSimulation(ws) {
 
   // Initialize current frame if not already
   if (!currentFrame) {
-    currentFrame = Array.from({ length: rows }, () =>
-      Array.from({ length: cols }, () => baseMin)
+    currentFrame = Array.from({ length: rowsPowermap }, () =>
+      Array.from({ length: colsPowermap }, () => baseMin)
     );
   }
 
@@ -94,9 +94,9 @@ function startSimulation(ws) {
       total = 0;
     const series = [];
 
-    for (let y = 0; y < rows; y++) {
+    for (let y = 0; y < rowsPowermap; y++) {
       const rowData = [];
-      for (let x = 0; x < cols; x++) {
+      for (let x = 0; x < colsPowermap; x++) {
         const normVal = normalizedData[y][x];
 
         // Calculate target temp with small jitter
@@ -126,26 +126,26 @@ function startSimulation(ws) {
     const average = sum / total;
 
     data = {
-      timestampStarted,
-      heatmapDimensions: {
-        rows,
-        cols,
-      },
+      powerState: status === "power_on" ? true : false,
       heatmapData: {
         series,
+        rows: cellmapDimensions.rows,
+        cols: cellmapDimensions.cols,
+        min_val: min,
+        max_val: max,
+      },
+      powermapData: {
+        rows: rowsPowermap,
+        cols: colsPowermap,
         unit_cell_dim: [0.001, 0.003],
-        rows,
-        cols,
         total_power: 755.659,
         peak_heat_flux: max / 10000,
         surface_area: 8.32,
-        min_val: min,
-        max_val: max,
         average_heat_flux: average / 10000,
       },
     };
 
-    sendDataToAll({ status, data });
+    sendDataToAll({ status, data, timestampStarted });
   }, 500);
 }
 
