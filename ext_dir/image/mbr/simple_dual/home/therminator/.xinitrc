@@ -42,5 +42,5 @@ exec chromium \
   --enable-zero-copy \
   --enable-features=VaapiVideoDecoder \
   --enable-logging=stderr --v=1 \
-  --disable-dev-shm-usage
+  --disable-dev-shm-usage \
   $SCALE >> "$LOGFILE" 2>&1

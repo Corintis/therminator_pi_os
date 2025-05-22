@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.6539975c.css",
-    "main.js": "/static/js/main.5fcdc4ab.js",
+    "main.js": "/static/js/main.afa68b2f.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/static/media/KaTeX_AMS-Regular.f80d9eaff7bad6dad739.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/static/media/KaTeX_Main-Regular.af7fc7b32dbf2a640c9c.ttf",
     "static/media/KaTeX_Main-Bold.ttf": "/static/media/KaTeX_Main-Bold.07e762d041b580e5d32a.ttf",
@@ -70,10 +70,10 @@
     "static/media/horizontalArrow.svg": "/static/media/horizontalArrow.bf1e4d43761ef9c2bf425b9158355722.svg",
     "static/media/verticalArrow.svg": "/static/media/verticalArrow.422e6ec16536628af6679da839e5308f.svg",
     "main.6539975c.css.map": "/static/css/main.6539975c.css.map",
-    "main.5fcdc4ab.js.map": "/static/js/main.5fcdc4ab.js.map"
+    "main.afa68b2f.js.map": "/static/js/main.afa68b2f.js.map"
   },
   "entrypoints": [
     "static/css/main.6539975c.css",
-    "static/js/main.5fcdc4ab.js"
+    "static/js/main.afa68b2f.js"
   ]
 }
